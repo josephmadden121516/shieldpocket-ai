@@ -2727,6 +2727,21 @@ const securityGrade =
           </details>
 
           <details style={{ padding: "12px 0", borderBottom: "1px solid var(--border-color, #dce7eb)" }}>
+            <summary>What is &quot;Ask Sophia about this&quot;?</summary>
+            <p>Under most AI results, this button opens follow-up questions with Sophia about that result. Each question and an excerpt of the result are sent to Sophia and metered (~1¢ per question). Conversation threads reset when a new result is generated and are not stored.</p>
+          </details>
+
+          <details style={{ padding: "12px 0", borderBottom: "1px solid var(--border-color, #dce7eb)" }}>
+            <summary>What is war-room narration?</summary>
+            <p>During the guided war-room demo, each step&apos;s title and caption are read aloud in your language (English or Spanish) using your device&apos;s speech synthesis. Narration runs fully on-device: no audio or text leaves the device and no API credits are used. Mute it anytime with the narration toggle.</p>
+          </details>
+
+          <details style={{ padding: "12px 0", borderBottom: "1px solid var(--border-color, #dce7eb)" }}>
+            <summary>What is cyber-insurance readiness?</summary>
+            <p>Describe your business size, industry, and security controls to get a one-page readiness report: a control snapshot, likely application answers, top gaps to close, and evidence to gather. The profile is sent to the AI only when you generate the report. Reports are preliminary preparation only, not insurance or legal advice, and can be downloaded as Markdown.</p>
+          </details>
+
+          <details style={{ padding: "12px 0", borderBottom: "1px solid var(--border-color, #dce7eb)" }}>
             <summary>How does biometric app unlock work?</summary>
             <p>In the native mobile app, your workspace locks automatically when the app starts and whenever you return to it. Unlock with Face ID, Touch ID, or your device passcode — the button names whichever your device supports — or use email and password instead. Availability depends on your device settings; if biometrics are unavailable, the app explains what to set up.</p>
           </details>
