@@ -451,6 +451,44 @@ export async function requestIncidentTimeline(
   return timeline
 }
 
+export async function requestInsuranceReadiness(
+  profile: string,
+  language: 'en' | 'es'
+): Promise<string> {
+  const trimmed = profile.trim()
+  if (!trimmed) {
+    throw new Error('Describe the business profile first.')
+  }
+  if (trimmed.length > MAX_ADVISOR_INPUT_LENGTH) {
+    throw new Error(
+      `Input must be ${MAX_ADVISOR_INPUT_LENGTH} characters or fewer.`
+    )
+  }
+  assertWithinDailyBudget()
+  if (!isSupabaseConfigured || !supabase) {
+    throw new Error(
+      'AI guidance is not configured. Check the Supabase environment settings.'
+    )
+  }
+
+  const { data, error } = await supabase.functions.invoke('analyze-threat', {
+    body: {
+      task: 'insurance',
+      message: trimmed,
+      language,
+    },
+  })
+
+  if (error) throw error
+  const report =
+    typeof data?.analysis === 'string' ? data.analysis.trim() : ''
+  if (!report) {
+    throw new Error('The AI service returned no readiness report.')
+  }
+  trackUsage(data)
+  return report
+}
+
 export interface DepScanPackage {
   name: string
   version: string

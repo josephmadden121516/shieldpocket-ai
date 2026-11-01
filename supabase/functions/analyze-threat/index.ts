@@ -12,6 +12,7 @@ import {
   parseEpssScore,
 } from "../_shared/vulnIntel.ts";
 import { extractReplyText, replyRefusal } from "../_shared/replyText.ts";
+import { buildInsuranceSystemPrompt } from "../_shared/insurance.ts";
 import {
   buildVerdict,
   cleanTargetUrl,
@@ -177,7 +178,8 @@ Deno.serve(async (req) => {
     task !== "digest" &&
     task !== "explain" &&
     task !== "polish" &&
-    task !== "timeline"
+    task !== "timeline" &&
+    task !== "insurance"
   ) {
     return jsonResponse({ error: "Unsupported analysis task." }, 400);
   }
@@ -563,7 +565,9 @@ Respond in ${language}.
               : task === "polish"
                 ? polishSystemPrompt
                 : task === "timeline"
-                  ? timelineSystemPrompt
+                ? timelineSystemPrompt
+                : task === "insurance"
+                  ? buildInsuranceSystemPrompt(language)
                   : threatSystemPrompt;
 
   const userContent = imageContent
@@ -838,7 +842,7 @@ Respond in ${language}.
           { role: "user", content: userContent },
         ],
         temperature: 0.2,
-        max_tokens: isAttackTree || isPhishDrill || isPhishGame ? 8000 : task === "digest" ? 1500 : task === "explain" ? 1500 : task === "polish" ? 2000 : task === "timeline" ? 2000 : 3000,
+        max_tokens: isAttackTree || isPhishDrill || isPhishGame ? 8000 : task === "digest" ? 1500 : task === "explain" ? 1500 : task === "polish" ? 2000 : task === "timeline" ? 2000 : task === "insurance" ? 2500 : 3000,
       }),
       signal: AbortSignal.timeout(30000),
     });

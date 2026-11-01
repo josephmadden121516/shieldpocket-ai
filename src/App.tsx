@@ -18,6 +18,7 @@ import { MobileDevicePosture } from './components/MobileDevicePosture'
 import { PhishingResponseGuide } from './components/PhishingResponseGuide'
 import { ComplianceFrameworkMapper } from './components/ComplianceFrameworkMapper'
 import { CveTriageAssistant } from './components/CveTriageAssistant'
+import { CyberInsuranceReadiness } from './components/CyberInsuranceReadiness'
 import { IncidentResponseKit } from './components/IncidentResponseKit'
 import { PatchGenerator } from './components/PatchGenerator'
 import { AttackTreeSimulator } from './components/AttackTreeSimulator'
@@ -241,6 +242,7 @@ const workspaceSections = [
   { id: 'security-checkup', label: 'Security checkup' },
   { id: 'mobile-device-posture', label: 'Mobile posture' },
   { id: 'incident-response', label: 'Incident response' },
+  { id: 'insurance-readiness', label: 'Insurance readiness' },
   { id: 'firewall-checkup', label: 'Firewall checkup' },
   { id: 'cookie-privacy', label: 'Cookie privacy' },
   { id: 'password-checker', label: 'Password checker' },
@@ -2591,6 +2593,8 @@ const securityGrade =
         <ScamTextAnalyzer language={assistantLanguage} />
 
         <IncidentTimelineReconstructor language={assistantLanguage} />
+
+        <CyberInsuranceReadiness language={assistantLanguage} />
 
         <WarRoomDemo language={assistantLanguage} />
 
