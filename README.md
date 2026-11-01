@@ -78,6 +78,19 @@ npm run build
 npm run lint
 ```
 
+### Hackathon judges: quick start
+
+```sh
+git clone https://github.com/josephmadden121516/shieldpocket-ai.git
+cd shieldpocket-ai
+npm install
+npm run dev
+```
+
+Then open the printed localhost URL (usually http://localhost:5173) and click **Explore with sample data** to bypass sign-in with sample reports and activity. Node 22 is recommended (matches CI).
+
+Without Supabase credentials the app still runs: checklists, playbooks, password checker, scam-text analyzer, badge studio, and local board-briefing generation all work; AI features show a "not configured" message instead of calling the backend. For the full AI experience, copy the two public Supabase values from the submission form into `.env.local` (same variables as above), or use the hosted build at https://shieldpocket-ai-orcin.vercel.app.
+
 ## Supabase functions
 
 Configure the provider credential as a server-side Supabase secret, linked to the intended project:
