@@ -5,6 +5,11 @@ import {
   emitWarRoomCue,
   type WarRoomStepId,
 } from '../lib/warRoom'
+import {
+  isNarrationSupported,
+  speakNarration,
+  stopNarration,
+} from '../lib/narration'
 import './WarRoomDemo.css'
 
 interface WarRoomDemoProps {
@@ -33,6 +38,7 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
   const [runIndex, setRunIndex] = useState(-1)
   const [paused, setPaused] = useState(false)
   const [elapsed, setElapsed] = useState(0)
+  const [narrationOn, setNarrationOn] = useState(isNarrationSupported())
   const runIndexRef = useRef(runIndex)
   const pausedRef = useRef(paused)
   const timersRef = useRef<number[]>([])
@@ -55,6 +61,7 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
 
   const stop = useCallback(() => {
     clearTimers()
+    stopNarration()
     setPaused(false)
     setRunIndex(-1)
   }, [clearTimers])
@@ -102,6 +109,17 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
     return clearTimers
   }, [running, paused, runIndex, goTo, clearTimers])
 
+  // Narrate the current step aloud in the demo language. Speech runs
+  // on-device and uses no API credits.
+  useEffect(() => {
+    if (!running || paused || !narrationOn) return
+    const step = WAR_ROOM_STEPS[runIndex]
+    const line = isEs
+      ? `${step.titleEs}. ${step.captionEs}`
+      : `${step.titleEn}. ${step.captionEn}`
+    void speakNarration(line, language)
+  }, [running, paused, runIndex, narrationOn, language, isEs])
+
   // Advance early when the cued component finishes its run.
   useEffect(() => {
     if (!running || paused) return
@@ -114,7 +132,13 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
     return () => window.removeEventListener(WAR_ROOM_DONE_EVENT, onDone)
   }, [running, paused, goTo])
 
-  useEffect(() => clearTimers, [clearTimers])
+  useEffect(
+    () => () => {
+      clearTimers()
+      stopNarration()
+    },
+    [clearTimers]
+  )
 
   const current = running ? WAR_ROOM_STEPS[runIndex] : null
 
@@ -152,8 +176,8 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
 
         <p className="war-room-note">
           {isEs
-            ? 'Ejecuta los componentes reales con datos de ejemplo y usa créditos de API (unos centavos). Respeta tu tope diario.'
-            : 'Runs the real components with sample data and uses API credits (a few cents). Honors your daily cap.'}
+            ? 'Ejecuta los componentes reales con datos de ejemplo y usa créditos de API (unos centavos). Respeta tu tope diario. Narra cada paso en voz alta; la voz se genera en tu dispositivo.'
+            : 'Runs the real components with sample data and uses API credits (a few cents). Honors your daily cap. Narrates each step aloud; speech is generated on your device.'}
         </p>
 
         <button
@@ -177,6 +201,25 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
                 ? 'Iniciar la demo'
                 : 'Start the demo'}
         </button>
+        {isNarrationSupported() && (
+          <button
+            type="button"
+            className="secondary-button war-room-narration-toggle"
+            aria-pressed={narrationOn}
+            onClick={() => {
+              if (narrationOn) stopNarration()
+              setNarrationOn(!narrationOn)
+            }}
+          >
+            {narrationOn
+              ? isEs
+                ? 'Silenciar narración'
+                : 'Mute narration'
+              : isEs
+                ? 'Activar narración'
+                : 'Enable narration'}
+          </button>
+        )}
       </section>
 
       {running && current && (
@@ -219,8 +262,9 @@ export function WarRoomDemo({ language }: WarRoomDemoProps) {
             <button
               type="button"
               className="secondary-button"
-              onClick={() => {
+                onClick={() => {
                 clearTimers()
+                stopNarration()
                 setPaused(!paused)
               }}
             >

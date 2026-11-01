@@ -36,6 +36,10 @@
   opacity: 0.85;
 }
 
+.war-room-narration-toggle {
+  margin-left: 8px;
+}
+
 .war-room-bar {
   position: fixed;
   left: 12px;
