@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import { useWarRoomCue } from '../lib/warRoom'
 import type { SecurityActivityEvent } from './SecurityActivityTimeline'
 import type { IncidentResponseProgress } from './incidentResponseProgress'
@@ -281,6 +282,14 @@ export function ExecutiveBoardBriefing({
           <h3>{isEs ? 'Versión pulida por IA' : 'AI-polished version'}</h3>
           <pre>{polished}</pre>
         </div>
+      )}
+
+      {briefing && (
+        <AskSophiaFollowUp
+          language={language}
+          context={polished && polishedFor === briefing ? polished : briefing}
+          contextKey={polished && polishedFor === briefing ? polished : briefing}
+        />
       )}
     </section>
   )

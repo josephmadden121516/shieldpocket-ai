@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import type { ComplianceFramework } from '../lib/securityAdvisors'
 import { requestSecurityAdvisor } from '../lib/securityAdvisors'
 
@@ -129,6 +130,11 @@ export function ComplianceFrameworkMapper({
             <div className="advisor-result" role="status" aria-live="polite">
               <h4>{isEs ? 'Mapeo preliminar' : 'Preliminary framework mapping'}</h4>
               <pre>{mapping}</pre>
+              <AskSophiaFollowUp
+                language={language}
+                context={mapping}
+                contextKey={mapping}
+              />
             </div>
           )}
         </div>

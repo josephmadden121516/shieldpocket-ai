@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import { requestDailyDigest } from '../lib/securityAdvisors'
 import { useWarRoomCue } from '../lib/warRoom'
 import type { SecurityActivityEvent } from './SecurityActivityTimeline'
@@ -192,6 +193,11 @@ export function ThreatDigest({ language, reports, activity }: ThreatDigestProps)
             {stored?.date ?? ''}
           </h3>
           <p>{visibleDigest}</p>
+          <AskSophiaFollowUp
+            language={language}
+            context={visibleDigest}
+            contextKey={`${stored?.date ?? ''}:${stored?.language ?? ''}`}
+          />
         </div>
       )}
     </section>

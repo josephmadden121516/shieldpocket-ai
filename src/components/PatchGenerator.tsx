@@ -6,6 +6,7 @@ import {
   type RemediationFileKind,
   type RemediationPatch,
 } from '../lib/remediation'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import { computeLineDiff } from '../../supabase/functions/_shared/diff'
 import { WAR_ROOM_SCENARIO, useWarRoomCue } from '../lib/warRoom'
 import './PatchGenerator.css'
@@ -69,6 +70,16 @@ export function PatchGenerator({ language }: PatchGeneratorProps) {
     () => (patch ? computeLineDiff(originalSnippet, patch.patchedCode) : []),
     [patch, originalSnippet]
   )
+
+  const patchContext = useMemo(() => {
+    if (!patch) return ''
+    return [
+      `Risk: ${patch.risk}`,
+      `Rationale: ${patch.rationale}`,
+      `Validation steps: ${patch.validationSteps.join('; ')}`,
+      `Rollback steps: ${patch.rollbackSteps.join('; ')}`,
+    ].join('\n')
+  }, [patch])
 
   async function runPatch(values: PatchRequestValues) {
     if (loading) return
@@ -499,6 +510,11 @@ export function PatchGenerator({ language }: PatchGeneratorProps) {
               {refineError}
             </p>
           )}
+          <AskSophiaFollowUp
+            language={language}
+            context={patchContext}
+            contextKey={patch?.patchedCode ?? ''}
+          />
         </div>
       )}
     </section>

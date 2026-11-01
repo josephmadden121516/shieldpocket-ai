@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import { requestIncidentTimeline } from '../lib/securityAdvisors'
 import { WAR_ROOM_SCENARIO, useWarRoomCue } from '../lib/warRoom'
 import './IncidentTimelineReconstructor.css'
@@ -132,6 +133,11 @@ export function IncidentTimelineReconstructor({
         <div className="incident-timeline-result" role="status" aria-live="polite">
           <h3>{isEs ? 'Cronología reconstruida' : 'Reconstructed timeline'}</h3>
           <pre>{timeline}</pre>
+          <AskSophiaFollowUp
+            language={language}
+            context={timeline}
+            contextKey={timeline}
+          />
         </div>
       )}
     </section>

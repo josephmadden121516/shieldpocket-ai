@@ -7,6 +7,7 @@ import {
   type DepScanFinding,
   type ExploitIntel,
 } from '../lib/securityAdvisors'
+import { AskSophiaFollowUp } from './AskSophiaFollowUp'
 import { parseManifestFile } from '../lib/manifestAudit'
 import { WAR_ROOM_SCENARIO, useWarRoomCue } from '../lib/warRoom'
 
@@ -284,6 +285,11 @@ export function CveTriageAssistant({ language }: CveTriageAssistantProps) {
                   <p style={{ whiteSpace: 'pre-wrap' }}>{explanation}</p>
                 </div>
               )}
+              <AskSophiaFollowUp
+                language={language}
+                context={result}
+                contextKey={result}
+              />
             </div>
           )}
         </>

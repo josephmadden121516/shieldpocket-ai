@@ -1,0 +1,110 @@
+.ask-sophia {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.ask-sophia-panel {
+  margin-top: 12px;
+}
+
+.ask-sophia-note {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.ask-sophia-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ask-sophia-chip {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 190, 160, 0.45);
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ask-sophia-chip:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ask-sophia-transcript {
+  display: grid;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.ask-sophia-message {
+  max-width: 92%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.ask-sophia-message-user {
+  justify-self: end;
+  background: rgba(45, 190, 160, 0.13);
+}
+
+.ask-sophia-message-assistant {
+  justify-self: start;
+  background: rgba(100, 116, 139, 0.14);
+}
+
+.ask-sophia-message strong {
+  font-size: 12px;
+}
+
+.ask-sophia-message p {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ask-sophia-thinking {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.ask-sophia-error {
+  margin: 0 0 10px;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.ask-sophia-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.ask-sophia-input-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 620px) {
+  .ask-sophia-input-row {
+    flex-direction: column;
+  }
+
+  .ask-sophia-input-row button {
+    width: 100%;
+  }
+}
