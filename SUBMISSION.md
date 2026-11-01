@@ -45,8 +45,10 @@ to show was built this week on Meta's Muse model — and the whole demo costs
 less than a cup of coffee to run."
 
 **0:20–1:50 — War-room demo (90 s).**
-Press Start on the War-room demo section; let it drive. Narrate lightly,
-one line per step as it scrolls — do NOT talk over every second:
+Press Start on the War-room demo section; let it drive. The live tour runs
+longer than 90 seconds, so record it in full, then speed AI-wait segments
+to 3–4× with a small "sped up" caption and jump-cut between steps.
+Narrate lightly, one line per step as it scrolls — do NOT talk over every second:
 - Digest: "Overnight picture, one call."
 - Triage: "A critical CVE lands; we triage it defensively."
 - Patch: "A hardened Dockerfile, drafted for human review — never auto-applied."
@@ -71,6 +73,9 @@ security instincts, pocket-sized. Thank you."
 
 ## Recording tips
 
+- **Target 2:55 final runtime.** Judges stop watching at 3:00 sharp; a few
+  seconds over won't disqualify you, but anything past the mark may never
+  be seen. Put the closing line before 2:55.
 - **Do not record before the final deploy.** Rehearse on localhost, record on
   the production Vercel link.
 - Run the war-room once off-camera first (warms caches, confirms AI latency).
