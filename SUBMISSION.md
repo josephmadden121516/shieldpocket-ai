@@ -36,7 +36,9 @@ Total: ~180 seconds. Record the screen at 1080p, voice over after (cleaner
 than live talking). Speak slowly; pause 1 beat between sections.
 
 **0:00–0:20 — Hook (20 s).**
-Show the phone + web app side by side if possible, else web.
+Start scrolled at the War-room demo section (web; phone beside it if
+possible). Do NOT linger on the app home or login — that shell predates the
+hackathon and is not claimed work.
 Say: "Small businesses get enterprise-grade attacks with no security team.
 ShieldPocket is the security analyst in their pocket. Everything I'm about
 to show was built this week on Meta's Muse model — and the whole demo costs
@@ -63,8 +65,9 @@ Say: "One edge function, one Meta model, every token metered with a daily
 cap. New work is mapped commit-by-commit in the repo."
 
 **2:50–3:00 — Close (10 s).**
-Back on the app home. Say: "ShieldPocket: enterprise security instincts,
-pocket-sized. Thank you."
+End on the usage meter section (still on screen from the war-room tour —
+do not scroll back to the app home). Say: "ShieldPocket: enterprise
+security instincts, pocket-sized. Thank you."
 
 ## Recording tips
 

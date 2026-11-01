@@ -8,7 +8,7 @@ const CAP_KEY = 'shieldpocket-daily-cap'
 const BALANCE_KEY = 'shieldpocket-credit-balance'
 
 export const DEFAULT_DAILY_CAP = 25
-export const DEFAULT_CREDIT_BALANCE = 149.45
+export const DEFAULT_CREDIT_BALANCE = 146.18
 export const SPEND_EVENT = 'shieldpocket-spend'
 
 interface SpendRecord {
