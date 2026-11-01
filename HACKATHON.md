@@ -16,11 +16,14 @@ No other model providers are used anywhere in the app.
 
 ## Built during the hackathon (new work)
 
-Every commit below is dated Oct 28–30, inside the event window.
+Every commit below is dated Oct 28–Nov 1, inside the event window.
 Verify with `git log --format="%h %ad %s" --date=short`.
 
 | Commit | Date | New work |
 |---|---|---|
+| `2fa96ec` | Nov 1 | Ask Sophia follow-ups on AI results (digest, triage, patch, timeline, compliance, briefing) |
+| `1e14683` | Nov 1 | Spoken war-room narration in English and Spanish (on-device speech, no credits) |
+| `9a75f75` | Nov 1 | Cyber-insurance readiness helper (new `insurance` edge task + one-page report UI) |
 | `1d650bf` | Oct 30 | Guided war-room demo mode (scripted breach walkthrough driving the real components) |
 | `0ecf7c3` | Oct 29 | Usage meter + daily budget guard, daily threat digest, plain-language finding explainer, board-briefing AI polish pass, patch refinement follow-ups, incident timeline reconstructor |
 | `13739d9` | Oct 29 | Phishing drill generator (safe training lures) |
@@ -49,3 +52,7 @@ board briefing + AI polish (`74a2caa`, `0ecf7c3`), and the usage meter
 The scam suite (link safety checker, scam-text analyzer) sits directly
 below the game as a self-guided follow-up: check the link, then read why
 the message is suspicious.
+Ask Sophia follow-ups (`2fa96ec`) ride inside the toured components, so
+the war-room script is unchanged; the tour now narrates each step aloud
+(`1e14683`). The insurance helper (`9a75f75`) is a standalone section
+after the incident timeline.

@@ -31,6 +31,9 @@ Supabase Auth, Database, and Edge Functions
 - **Board briefings are generated locally.** They summarize recent device activity, self-reported checklist and incident-playbook progress, and up to 20 saved threat reports. No AI request is made; chat transcripts and unsaved message contents are excluded. Review a briefing before downloading, printing, or sharing it.
 - **Compliance mapping is user-triggered.** The selected threat-assessment summary is sent to Muse Spark only when the user requests NIST CSF 2.0 and/or ISO/IEC 27001:2022 guidance. Results are preliminary, may be inaccurate, and are not an audit, certification, or finding of noncompliance. Verify references against the official standards.
 - **Vulnerability triage is user-triggered and defensive.** User-pasted CVE or scanner text is sent to Muse Spark only after submitting the form. It does not run scans or test exploits; do not include credentials or personal data, and verify versions and fixes with vendor advisories.
+- **Ask Sophia sends excerpts.** Each follow-up question plus an excerpt (up to ~2500 characters) of the discussed result is sent through Supabase to Meta and metered. Threads reset when a new result is generated and are not stored.
+- **War-room narration stays on the device.** Step titles and captions are spoken with the browser's speech synthesis; no audio or text leaves the device for narration and no API credits are used.
+- **Cyber-insurance readiness is user-triggered.** The business profile is sent to Muse Spark only when you generate the report. The report is preliminary preparation, not insurance or legal advice, an underwriting decision, or proof of coverage; review it with your insurer or broker before answering a real application.
 - **The checklist may sync to Supabase for signed-in accounts.** Account authentication and explicitly saved reports use Supabase services.
 - **AI assessments are guidance, not proof.** The analyzer does not visit links, inspect email headers, scan attachments, or query live threat feeds. A low-risk response does not establish that content is safe.
 
@@ -45,6 +48,9 @@ Supabase Auth, Database, and Edge Functions
 - Local executive board briefings with Markdown download and print-to-PDF
 - Opt-in NIST CSF 2.0 / ISO 27001 preliminary mapping for threat assessments
 - Defensive CVE and vulnerability prioritization with patch checklists
+- Ask Sophia follow-up questions on every AI result
+- Spoken war-room narration in English and Spanish (on-device speech, no credits)
+- Cyber-insurance readiness reports with Markdown download
 - Capacitor iOS app using the web app interface
 
 ## Development
