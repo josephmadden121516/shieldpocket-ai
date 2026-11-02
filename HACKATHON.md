@@ -10,8 +10,7 @@ through the **Meta Model API** (`https://api.meta.ai/v1/chat/completions`),
 via the Supabase Edge Function `analyze-threat` (`supabase/functions/`).
 Every call returns token usage, which the app meters live
 (`src/lib/usageMeter.ts`) under a user-set daily cap. The project was
-built with the Muse Code coding agent, with coding assistance from
-ChatGPT and Muse Copilot in VS Code.
+built with the Muse Code coding agent.
 
 No other model providers are used anywhere in the app.
 

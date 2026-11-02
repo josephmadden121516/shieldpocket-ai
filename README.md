@@ -13,13 +13,31 @@ Browser / iOS app
         v
 Supabase Auth, Database, and Edge Functions
   analyze-threat --------------+
-  sophia-chat -----------------+----> Meta Model API (Muse Spark)
+  sophia-chat -----------------+
+  generate-remediation --------+----> Meta Model API (Muse Spark)
 ```
 
 - **Frontend:** React, TypeScript, and Vite. Vercel serves the web build; Capacitor packages the same frontend for iOS.
 - **Backend:** Supabase provides authentication, account-scoped data, and Edge Functions. Functions keep the Meta API key on the server.
-- **AI:** The `analyze-threat` and `sophia-chat` functions call Meta Model API using Muse Spark. AI requests are made for explicit user actions, not automatically in the background.
+- **AI:** The `analyze-threat`, `sophia-chat`, and `generate-remediation` functions call Meta Model API using Muse Spark. AI requests are made for explicit user actions, not automatically in the background.
 - **Local checks:** The password-strength heuristic runs in the browser. Text threat analysis uses local warning-pattern checks if its AI request fails. Screenshot analysis requires the AI endpoint and does not silently substitute a local result.
+
+## Runtime model usage
+
+Every model call ShieldPocket makes at runtime goes to Meta's **Muse Spark**
+model (`muse-spark-1.3`) through the **Meta Model API**
+(`https://api.meta.ai/v1/chat/completions`). The API key stays on the
+server inside three Supabase Edge Functions:
+
+- `analyze-threat` — threat, compliance, CVE, attack-tree, digest, explain,
+  polish, timeline, insurance, phishing-drill, and phishing-game tasks
+- `sophia-chat` — Sophia chat and Ask Sophia follow-ups
+- `generate-remediation` — patch proposals and refinements
+
+No other model provider is called anywhere in the app. The remaining HTTPS
+calls are static data lookups, not models: OSV, CISA KEV, EPSS, the Safe
+Browsing blocklist, and RDAP registry data. Speech features use the
+device's built-in speech synthesis, not a model API.
 
 ## Security and privacy
 
